@@ -120,7 +120,7 @@ void adjust_fitness_sharing(Population *p);
 /* ---------------- population.c ---------------- */
 Population population_create(int size, int num_inputs, int num_outputs);
 void population_free(Population *p);
-void population_evaluate(Population *p, double (*fitness_fn)(const Genome *, void *), void *user_data) 
+void population_evaluate(Population *p, double (*fitness_fn)(const Genome *, void *), void *user_data);
 void population_reproduce(Population *p);
 Genome *population_best(Population *p);
 
@@ -133,7 +133,6 @@ int genome_save(const Genome *g, int num_inputs, int num_outputs, const char *pa
 int genome_load(Genome *g, int *num_inputs, int *num_outputs, const char *path);
 
 /* ---------------- generate.c ---------------- */
-void generate_neural_net(const int pop_size, const int num_inputs, const int num_samples, const int num_outputs, const int max_gens,
-						double inputs[num_samples][num_inputs], double expectations[num_samples]);
+void generate_neural_net(void *user_data);
 
 #endif /* NEAT_H */
