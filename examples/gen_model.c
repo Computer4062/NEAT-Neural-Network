@@ -14,7 +14,15 @@ static double xor_inputs[4][3] = {
 };
 static double xor_expected[4] = {0, 1, 1, 0};
 
+Dataset data = {
+    .num_samples = 4,
+    .num_inputs = NUM_INPUTS,
+    .num_outputs = NUM_OUTPUTS,
+    .inputs = xor_inputs,
+    .expectations = xor_expected
+};
+
 int main(int argc, char **argv){
-	generate_neural_net(POP_SIZE, NUM_INPUTS, 4, NUM_OUTPUTS, MAX_GENERATIONS, xor_inputs, xor_expected);
+    generate_neural_net(&data);
 	return 0;
 }

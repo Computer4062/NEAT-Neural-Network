@@ -1,28 +1,19 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 -std=c11 -Iinclude
+CFLAGS = -Wall -O2 -Iinclude
 LDFLAGS = -lm
 
-SRC = src/genome.c src/network.c src/species.c src/population.c src/genome_io.c src/main.c
-OBJ = $(SRC:.c=.o)
-BIN = neat_xor
-DEMO = examples/run_model
+all: gen_model run_model
 
-all: $(BIN)
+# Generate/train a network -> writes a .neat file
+# Uses everything in src/ (whichever file holds main() for training) + neat.h
+gen_model:
+	$(CC) $(CFLAGS) src/*.c -o gen_model $(LDFLAGS)
 
-$(BIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Standalone demo: only needs neat_model.h, proves it works with none of
-# the training source files.
-demo: $(DEMO)
-
-$(DEMO): examples/run_model.c include/neat_model.h
-	$(CC) $(CFLAGS) -o $(DEMO) examples/run_model.c $(LDFLAGS)
+# Load and run a saved .neat file -> standalone, no src/ files needed
+run_model:
+	$(CC) $(CFLAGS) examples/run_model.c -o run_model $(LDFLAGS)
 
 clean:
-	rm -f $(OBJ) $(BIN) $(DEMO)
+	rm -f gen_model run_model
 
-.PHONY: all demo clean
+.PHONY: all clean gen_model run_model

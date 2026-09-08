@@ -25,6 +25,14 @@
 typedef enum { NODE_INPUT, NODE_OUTPUT, NODE_HIDDEN, NODE_BIAS } NodeType;
 
 typedef struct {
+    int num_samples;
+    int num_inputs;
+    int num_outputs;
+    double (*inputs)[2];
+    double *expectations;
+} Dataset;
+
+typedef struct {
     int id;
     NodeType type;
 } NodeGene;

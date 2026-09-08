@@ -35,9 +35,9 @@ void population_free(Population *p) {
     if (p->has_best_ever) genome_free(&p->best_ever);
 }
 
-void population_evaluate(Population *p, double (*fitness_fn)(const Genome *)) {
+void population_evaluate(Population *p, double (*fitness_fn)(const Genome *, void *), void *user_data) {
     for (int i = 0; i < p->size; i++) {
-        p->genomes[i].fitness = fitness_fn(&p->genomes[i]);
+        p->genomes[i].fitness = fitness_fn(&p->genomes[i], user_data);
         if (!p->has_best_ever || p->genomes[i].fitness > p->best_ever_fitness) {
             if (p->has_best_ever) genome_free(&p->best_ever);
             p->best_ever = genome_copy(&p->genomes[i]);
