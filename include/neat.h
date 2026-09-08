@@ -28,7 +28,7 @@ typedef struct {
     int num_samples;
     int num_inputs;
     int num_outputs;
-    double (*inputs)[2];
+    double (*inputs)[3];
     double *expectations;
 } Dataset;
 
