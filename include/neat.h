@@ -120,7 +120,7 @@ void adjust_fitness_sharing(Population *p);
 /* ---------------- population.c ---------------- */
 Population population_create(int size, int num_inputs, int num_outputs);
 void population_free(Population *p);
-void population_evaluate(Population *p, double (*fitness_fn)(const Genome *));
+void population_evaluate(Population *p, double (*fitness_fn)(const Genome *, void *), void *user_data) 
 void population_reproduce(Population *p);
 Genome *population_best(Population *p);
 
