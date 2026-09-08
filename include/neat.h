@@ -133,6 +133,6 @@ int genome_save(const Genome *g, int num_inputs, int num_outputs, const char *pa
 int genome_load(Genome *g, int *num_inputs, int *num_outputs, const char *path);
 
 /* ---------------- generate.c ---------------- */
-void generate_neural_net(void *user_data);
+int generate_neural_net(void *user_data);
 
 #endif /* NEAT_H */

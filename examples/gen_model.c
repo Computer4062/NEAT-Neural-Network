@@ -23,6 +23,8 @@ Dataset data = {
 };
 
 int main(int argc, char **argv){
-    generate_neural_net(&data);
+    if(generate_neural_net(&data) == 0) printf("Successfully generated neural network");
+    else printf("Filed to generated neural network");
+
 	return 0;
 }
